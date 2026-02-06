@@ -13,7 +13,7 @@ Repositorio para Tareas del Laboratorio del Curso **Lenguajes Formales**  <br>
 **Nombre:** Jose Victor De La Rosa Chicoj <br>
 **Carnet:** 202407095 <br>
 <br>
-# Contendio del Informe: <br>
+# Contendio del Repositorio: <br>
 **Enunciado:**
 Elegir un objeto (ej: Libro, Coche, Celular, Perro, etc.) y pensar en al menos 3 atributos
 que lo definan (ej: título, autor, páginas para un Libro) y crear una clase en el lenguaje
