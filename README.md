@@ -9,13 +9,11 @@ Repositorio para Tareas del Laboratorio del Curso **Lenguajes Formales**  <br>
 
 <br>
 
-# Estudiante 
-<br>
+# Estudiante  <br>
 **Nombre:** Jose Victor De La Rosa Chicoj <br>
 **Carnet:** 202407095 <br>
 <br>
-# Contendio del Informe: 
-<br>
-**Tarea1:**(./Tarea1)
+# Contendio del Informe: <br>
+[**Tarea1:**](./Tarea1)
 
 
