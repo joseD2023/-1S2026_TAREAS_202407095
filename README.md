@@ -24,7 +24,8 @@ C++. Debe contar con:  <br>
 llamar(), cargarBateria()). <br>
 Posteriormente deberá crear dos instancias (objetos) de la clase con valores diferentes. y
 probar los métodos desde el método main, mostrando su funcionamiento. <br>
-[**Tarea1**](./Tarea1)
+[**Tarea1**](./Tarea1)<br>
+<br>
 <br>
 **Enunciado** Inventario <br>
 Este programa permite manejar un archivo de inventario de productos. Cada producto tiene información como nombre, cantidad, precio unitario y ubicación.
