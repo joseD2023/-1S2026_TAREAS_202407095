@@ -124,7 +124,7 @@ void menuPrincial() {
             cout << " Lectura de Archivo y Visualizacion "<< endl;
             string valido = "../inventario.inv";
             string noValido = "../inventario_invalido.inv";
-            lecturaArchivoVisualizacion(valido);
+            lecturaArchivoVisualizacion(noValido);
 
         }else if (opc == 2) {
             cout << " Gracias por Acompañarnos y Utilizar nuestro Programa " << endl;
