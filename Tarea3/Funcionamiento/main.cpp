@@ -40,7 +40,7 @@ string tipoTokensString(TipoToken tipo) {
         case LLAVES:
             return  "llaves";
         case DESCONOCIDO:
-            return "Error Lexico";
+            return "Error Lexico : Simbolo No Reconocido, No pertence al Lenguaje";
         default:
             return "Desconocido";
     }
@@ -69,25 +69,30 @@ vector<Token> analizadorLexico(const string& entrada, int numeroFila) {
             continue;
         }
 
-
         /*aqui empezamos otra ves ver a validar si viene un caracter o no*/
 
         if (isalpha(entrada[columna])) {
             int inicio = columna;
             string constructorLexemas;
 
-            while (isalnum(entrada[columna])) {
+            while (isalnum(entrada[columna]) || entrada[columna] == '_') {
                 constructorLexemas += entrada[columna];
                 columna++; /*aumentamos la posicion para ir verificando*/
             }
 
-            /*Una vez construido verificamso si ese texto es una palabra reservada o un identificador*/
+            if (!isalnum(entrada[columna]) && !isspace(entrada[columna]) && entrada[columna] != '_'  && entrada[columna] != '(' && entrada[columna] != ')' && entrada[columna] != ';') {
+                constructorLexemas += entrada[columna];
+                columna++;
+                tokens.push_back({DESCONOCIDO, constructorLexemas, inicio+1, numeroFila});
+            }
 
-            if (esReservada(constructorLexemas)) {
+            /*Una vez construido verificamos si ese texto es una palabra reservada o un identificador*/
+            else if (esReservada(constructorLexemas)) {
                 tokens.push_back({RESERVADA, constructorLexemas, inicio+1,numeroFila});
             }else {
                 tokens.push_back({IDENTIFICADOR, constructorLexemas, inicio+1, numeroFila});
             }
+
             continue;
         }
 
@@ -118,10 +123,18 @@ vector<Token> analizadorLexico(const string& entrada, int numeroFila) {
                 /*Numero real*/
                 tokens.push_back({NUMERO, constructorLexemas, inicio+1, numeroFila});
 
+
+            }else if (isalpha(entrada[columna])) {
+
+                while (isalnum(entrada[columna])) {
+                    constructorLexemas += entrada[columna];
+                    columna ++;
+                }
+
+                tokens.push_back({DESCONOCIDO, constructorLexemas, inicio+1, numeroFila});
+
             }else {
-
                 tokens.push_back({NUMERO, constructorLexemas, inicio+1, numeroFila});
-
             }
 
             continue;
@@ -176,11 +189,23 @@ vector<Token> analizadorLexico(const string& entrada, int numeroFila) {
 
 
 void imprimirTokens(const vector<Token>& tokens) {
+    vector<Token> errores;
     cout << "Fila \t Columna   Token \t Lexema " << endl;
     cout << "------------------------------------------------------" << endl;
     for (const auto& t : tokens) {
-        cout << t.fila << "\t" << t.columna << "\t" << tipoTokensString(t.tipo) << ":  " <<  "[" << t.lexema <<  "]" << endl;
+        if (t.tipo != DESCONOCIDO) {
+            cout << t.fila << "\t" << t.columna << "\t" << tipoTokensString(t.tipo) << ":  " <<  "[" << t.lexema <<  "]" << endl;
+            continue;
+        }
+        errores.push_back(t);
     }
+
+    cout << "Fila \t Columna   Token \t Error Lexico " << endl;
+    cout << "------------------------------------------------------" << endl;
+    for (const auto& l : errores) {
+        cout << l.fila << "\t" << l.columna << "\t" << tipoTokensString(l.tipo) << ":  " <<  "[" << l.lexema <<  "]" << endl;
+    }
+
 }
 
 
